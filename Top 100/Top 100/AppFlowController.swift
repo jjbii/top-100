@@ -9,22 +9,35 @@
 import UIKit
 
 class AppFlowController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    // MARK: - Properties
+    
+    private var childNavigationController: UINavigationController?
+    
+    // MARK: - UIViewController
+    
+    override func loadView() {
+        let view = UIView()
+        view.backgroundColor = .orange
+        self.view = view
+        self.configureChildNavigationController()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Setup
+    
+    private func configureChildNavigationController() {
+        let albumListVC = AlbumListViewController()
+        albumListVC.delegate = self
+        let childNav = UINavigationController(rootViewController: albumListVC)
+        self.install(childViewController: childNav, addingConstraints: true)
+        self.childNavigationController = childNav
     }
-    */
+}
 
+// MARK: - AlbumListViewControllerDelegate
+
+extension AppFlowController: AlbumListViewControllerDelegate {
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbumAtIndex index: Int) {
+        print("Did select album at index: \(index)")
+    }
 }
