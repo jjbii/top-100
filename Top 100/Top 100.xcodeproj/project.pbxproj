@@ -78,6 +78,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		04B1B8A424B86A5300191E90 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04D265A724B70061007E4561 /* AppFlowController.swift */,
+				04D265AE24B707B4007E4561 /* AlbumListViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		04D2657924B6FEDB007E4561 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +113,7 @@
 				04D2658E24B6FEDD007E4561 /* Assets.xcassets */,
 				04D2659024B6FEDD007E4561 /* LaunchScreen.storyboard */,
 				04D2659324B6FEDD007E4561 /* Info.plist */,
-				04D265A724B70061007E4561 /* AppFlowController.swift */,
-				04D265AE24B707B4007E4561 /* AlbumListViewController.swift */,
+				04B1B8A424B86A5300191E90 /* View Controllers */,
 				04B1B89524B859CB00191E90 /* Models */,
 				04D265A924B70307007E4561 /* Extensions */,
 			);
