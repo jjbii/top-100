@@ -18,7 +18,7 @@ class AppFlowController: UIViewController {
     
     override func loadView() {
         let view = UIView()
-        view.backgroundColor = .orange
+        view.backgroundColor = .white
         self.view = view
         self.configureChildNavigationController()
     }
