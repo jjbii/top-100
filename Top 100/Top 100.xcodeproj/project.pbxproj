@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04B1B89724B859DE00191E90 /* AlbumFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89624B859DE00191E90 /* AlbumFeed.swift */; };
+		04B1B89924B862A500191E90 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89824B862A500191E90 /* Album.swift */; };
+		04B1B89B24B862AE00191E90 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89A24B862AE00191E90 /* Genre.swift */; };
+		04B1B89D24B8650D00191E90 /* JSONDecoder+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89C24B8650D00191E90 /* JSONDecoder+Additions.swift */; };
 		04D2658624B6FEDB007E4561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2658524B6FEDB007E4561 /* AppDelegate.swift */; };
 		04D2658824B6FEDB007E4561 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2658724B6FEDB007E4561 /* SceneDelegate.swift */; };
 		04D2658F24B6FEDD007E4561 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D2658E24B6FEDD007E4561 /* Assets.xcassets */; };
@@ -28,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04B1B89624B859DE00191E90 /* AlbumFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFeed.swift; sourceTree = "<group>"; };
+		04B1B89824B862A500191E90 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		04B1B89A24B862AE00191E90 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		04B1B89C24B8650D00191E90 /* JSONDecoder+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Additions.swift"; sourceTree = "<group>"; };
 		04D2658224B6FEDB007E4561 /* Top 100.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Top 100.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D2658524B6FEDB007E4561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D2658724B6FEDB007E4561 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04B1B89524B859CB00191E90 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04B1B89624B859DE00191E90 /* AlbumFeed.swift */,
+				04B1B89824B862A500191E90 /* Album.swift */,
+				04B1B89A24B862AE00191E90 /* Genre.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		04D2657924B6FEDB007E4561 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +106,7 @@
 				04D2659324B6FEDD007E4561 /* Info.plist */,
 				04D265A724B70061007E4561 /* AppFlowController.swift */,
 				04D265AE24B707B4007E4561 /* AlbumListViewController.swift */,
+				04B1B89524B859CB00191E90 /* Models */,
 				04D265A924B70307007E4561 /* Extensions */,
 			);
 			path = "Top 100";
@@ -106,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				04D265AA24B70330007E4561 /* UIViewController+Additions.swift */,
+				04B1B89C24B8650D00191E90 /* JSONDecoder+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -211,10 +231,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D265AB24B70330007E4561 /* UIViewController+Additions.swift in Sources */,
+				04B1B89724B859DE00191E90 /* AlbumFeed.swift in Sources */,
 				04D2658624B6FEDB007E4561 /* AppDelegate.swift in Sources */,
 				04D2658824B6FEDB007E4561 /* SceneDelegate.swift in Sources */,
 				04D265A824B70061007E4561 /* AppFlowController.swift in Sources */,
+				04B1B89924B862A500191E90 /* Album.swift in Sources */,
+				04B1B89D24B8650D00191E90 /* JSONDecoder+Additions.swift in Sources */,
 				04D265AF24B707B4007E4561 /* AlbumListViewController.swift in Sources */,
+				04B1B89B24B862AE00191E90 /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
