@@ -37,7 +37,8 @@ class AppFlowController: UIViewController {
 // MARK: - AlbumListViewControllerDelegate
 
 extension AppFlowController: AlbumListViewControllerDelegate {
-    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbumAtIndex index: Int) {
-        print("Did select album at index: \(index)")
+    
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album) {
+        print("Did select album: \(album.name)")
     }
 }

@@ -9,15 +9,16 @@
 import UIKit
 
 protocol AlbumListViewControllerDelegate: class {
-    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbumAtIndex index: Int)
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album)
 }
 
 class AlbumListViewController: UIViewController {
-    
+      
     // MARK: - Properties
 
     weak var delegate: AlbumListViewControllerDelegate?
     var tableView: UITableView?
+    var modelController: AlbumListModelController?
 
     // MARK: - UIViewController
     
@@ -30,7 +31,7 @@ class AlbumListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureTableView()
-        self.title = "Top Albums"
+        self.modelController = AlbumListModelController(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +56,7 @@ class AlbumListViewController: UIViewController {
         tableView.delegate = self
         self.tableView = tableView
     }
-    
+        
     func clearCurrentSelection() {
         guard let indexPath = self.tableView?.indexPathForSelectedRow else {
             return
@@ -69,13 +70,16 @@ class AlbumListViewController: UIViewController {
 extension AlbumListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return self.modelController?.numberOfAlbums() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "AlbumCell")
-        cell.textLabel?.text = "Album \(indexPath.row + 1)"
-        cell.detailTextLabel?.text = "Artist name here."
+        
+        let album = self.modelController?.album(at: indexPath.row)
+        
+        cell.textLabel?.text = album?.name ?? "Album name"
+        cell.detailTextLabel?.text = album?.artistName ?? "Artist name"
         if let imageView = cell.imageView {
             imageView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
@@ -96,6 +100,22 @@ extension AlbumListViewController: UITableViewDataSource {
 extension AlbumListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate?.albumListViewController(self, didSelectAlbumAtIndex: indexPath.row)
+        guard let album = self.modelController?.album(at: indexPath.row) else { return }
+        self.delegate?.albumListViewController(self, didSelectAlbum: album)
+    }
+}
+
+// MARK: - AlbumListModelControllerDelegate
+
+extension AlbumListViewController: AlbumListModelControllerDelegate {
+    
+    func albumListModelControllerDidUpdate(_ controller: AlbumListModelController) {
+        self.title = controller.listTitle
+        self.tableView?.reloadData()
+    }
+    
+    func albumListModelController(_ controller: AlbumListModelController, didReceiveError error: Error) {
+        // TODO: Show an alert with the error.
+        print("AlbumListModelController did receive error.")
     }
 }

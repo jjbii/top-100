@@ -13,7 +13,7 @@ struct Album: Decodable {
     let name: String
     let artistName: String
     let genres: [Genre]
-    let releaseDate: String
+    let releaseDate: Date?
     let copyright: String
     let url: URL?
     let artworkUrl: URL?
