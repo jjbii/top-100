@@ -6,7 +6,7 @@
 //  Copyright © 2020 Built Light. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol AlbumListModelControllerDelegate: class {
     func albumListModelControllerDidUpdate(_ controller: AlbumListModelController)
@@ -19,6 +19,7 @@ class AlbumListModelController {
 
     private let iTunesApiService = iTunesAPIService()
     private var albumFeed: AlbumFeed?
+    private let artworkService = AlbumArtworkService.shared
     weak var delegate: AlbumListModelControllerDelegate?
 
     // MARK: - Initialization
@@ -40,6 +41,10 @@ class AlbumListModelController {
     
     func album(at index: Int) -> Album? {
         return self.albumFeed?.results[index]
+    }
+    
+    func artwork(for album: Album) -> UIImage?  {
+        return self.artworkService.artwork(for: album)
     }
 }
 
