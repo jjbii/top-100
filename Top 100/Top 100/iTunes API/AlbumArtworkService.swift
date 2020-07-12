@@ -56,6 +56,10 @@ private extension AlbumArtworkService {
                 
         let request = URLRequest(url: artworkUrl)
         let task = self.session.dataTask(with: request) { (data, response, error) in
+            defer {
+                self.activeDataTasks[album.id] = nil
+            }
+            
             if let error = error {
                 print("Error fetching artwork for album with ID: \(album.id)\n\(error)")
                 return
@@ -71,7 +75,6 @@ private extension AlbumArtworkService {
             
             self.cache.setObject(image, forKey: album.id as NSString)
             self.postNotification(forImage: image, withAlbumId: album.id)
-            self.activeDataTasks[album.id] = nil
         }
         self.activeDataTasks[album.id] = task
         task.resume()
