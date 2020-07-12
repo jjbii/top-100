@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// This class is responsible for providing album artwork images, by either fetching them for
+/// a local cache, or by requesting them over the web.
+///
+/// It is implemented as a singleton for two reasons:
+/// 1. It owns and maintains a cache that contains all successfullly fetched images.
+/// 2. By keeping track of active network requests, it ensures that duplicate requests are never sent for the same resource.
 class AlbumArtworkService: NSObject {
     
     // MARK: - Properties
