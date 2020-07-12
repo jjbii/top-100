@@ -15,7 +15,7 @@ class AlbumArtworkService: NSObject {
     static var shared: AlbumArtworkService = AlbumArtworkService()
     private var cache = NSCache<NSString, UIImage>()
     private let session = URLSession.shared
-    private var activeRequestKeys = Set<String>()
+    private var activeDataTasks = [String: URLSessionDataTask]()
 
     // MARK: - Initialization
     
@@ -33,6 +33,13 @@ class AlbumArtworkService: NSObject {
             return nil
         }
     }
+    
+    func cancelPrefetchRequest(for album: Album) {
+        if let task = self.activeDataTasks[album.id] {
+            task.cancel()
+            self.activeDataTasks[album.id] = nil
+        }
+    }
 }
 
 // MARK: - Private
@@ -40,18 +47,14 @@ class AlbumArtworkService: NSObject {
 private extension AlbumArtworkService {
     
     func requestArtworkImage(for album: Album) {
-        guard let artworkUrl = album.artworkUrl else {
-            return
+        guard
+            let artworkUrl = album.artworkUrl,
+            !self.requestInProgress(for: album)
+            else {
+                return
         }
-        /// `inserted` will be true if the key was not already present in the set.
-        /// This means a request is not currently in progress, so we are free to send one.
-        let (inserted, _) = self.activeRequestKeys.insert(album.id)
-        guard inserted else {
-            return
-        }
-        
+                
         let request = URLRequest(url: artworkUrl)
-        
         let task = self.session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Error fetching artwork for album with ID: \(album.id)\n\(error)")
@@ -68,9 +71,17 @@ private extension AlbumArtworkService {
             
             self.cache.setObject(image, forKey: album.id as NSString)
             self.postNotification(forImage: image, withAlbumId: album.id)
-            self.activeRequestKeys.remove(album.id)
+            self.activeDataTasks[album.id] = nil
         }
+        self.activeDataTasks[album.id] = task
         task.resume()
+    }
+    
+    func requestInProgress(for album: Album) -> Bool {
+        if let _ = self.activeDataTasks[album.id] {
+            return true
+        }
+        return false
     }
     
     func postNotification(forImage image: UIImage, withAlbumId albumId: String) {

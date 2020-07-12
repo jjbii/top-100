@@ -72,11 +72,21 @@ class AlbumListModelController {
     }
     
     func artwork(for index: Int) -> UIImage?  {
-        guard let album = self.albumFeed?.results[index]
-            else {
-                return nil
-        }
+        guard let album = self.album(at: index) else { return nil }
         return self.artworkService.artwork(for: album)
+    }
+    
+    func prefetchArtwork(for indexes: [Int]) {
+        for index in indexes {
+            let _ = self.artwork(for: index)
+        }
+    }
+    
+    func cancelPrefetching(for indexes: [Int]) {
+        for index in indexes {
+            guard let album = self.album(at: index) else { continue }
+            self.artworkService.cancelPrefetchRequest(for: album)
+        }
     }
 }
 

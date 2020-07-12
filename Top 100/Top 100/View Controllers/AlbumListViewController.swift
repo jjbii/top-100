@@ -44,9 +44,11 @@ class AlbumListViewController: UIViewController {
     func configureTableView() {
         self.view.addSubview(self.tableView)
         self.tableView.constrain(to: self.view)
-        self.tableView.rowHeight = 64.0
+        self.tableView.rowHeight = 64
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 64, bottom: 0, right: 0)
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.tableView.prefetchDataSource = self
         self.tableView.register(AlbumCell.self, forCellReuseIdentifier: AlbumCell.identifier)
     }
     
@@ -94,6 +96,21 @@ extension AlbumListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDataSourcePrefetching
+
+extension AlbumListViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let rows = indexPaths.map { $0.row }
+        self.modelController.prefetchArtwork(for: rows)
+    }
+    
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        let rows = indexPaths.map { $0.row }
+        self.modelController.cancelPrefetching(for: rows)
+    }
+}
+
 // MARK: - UITableViewDelegate
 
 extension AlbumListViewController: UITableViewDelegate {
@@ -122,5 +139,3 @@ extension AlbumListViewController: AlbumListModelControllerDelegate {
         self.visibleCell(for: index)?.artworkView.image = image
     }
 }
-
-// TODO: Add prefetching support.
