@@ -79,7 +79,7 @@ class AlbumDetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -171,7 +171,7 @@ class AlbumDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             self.appleMusicButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: padding),
             self.appleMusicButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: padding * -1),
-            self.appleMusicButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: padding * -1),
+            self.appleMusicButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: padding * -1),
             self.appleMusicButton.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
