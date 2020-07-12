@@ -10,6 +10,8 @@
 		042E599C24B974FA0007DDED /* iTunesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599B24B974FA0007DDED /* iTunesAPIService.swift */; };
 		042E599F24B995F90007DDED /* AlbumListModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599E24B995F90007DDED /* AlbumListModelController.swift */; };
 		042E59A124B9AEBE0007DDED /* AlbumArtworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */; };
+		0442438424BA8381003CEB76 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442438324BA8381003CEB76 /* UIView+Additions.swift */; };
+		0442438724BA8B96003CEB76 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442438624BA8B96003CEB76 /* AlbumCell.swift */; };
 		04B1B89724B859DE00191E90 /* AlbumFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89624B859DE00191E90 /* AlbumFeed.swift */; };
 		04B1B89924B862A500191E90 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89824B862A500191E90 /* Album.swift */; };
 		04B1B89B24B862AE00191E90 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1B89A24B862AE00191E90 /* Genre.swift */; };
@@ -37,6 +39,8 @@
 		042E599B24B974FA0007DDED /* iTunesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPIService.swift; sourceTree = "<group>"; };
 		042E599E24B995F90007DDED /* AlbumListModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListModelController.swift; sourceTree = "<group>"; };
 		042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumArtworkService.swift; sourceTree = "<group>"; };
+		0442438324BA8381003CEB76 /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		0442438624BA8B96003CEB76 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		04B1B89624B859DE00191E90 /* AlbumFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFeed.swift; sourceTree = "<group>"; };
 		04B1B89824B862A500191E90 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		04B1B89A24B862AE00191E90 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -89,6 +93,14 @@
 			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
+		0442438524BA8B52003CEB76 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0442438624BA8B96003CEB76 /* AlbumCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		04B1B89524B859CB00191E90 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,7 @@
 				04D265A724B70061007E4561 /* AppFlowController.swift */,
 				04D265AE24B707B4007E4561 /* AlbumListViewController.swift */,
 				04D265AA24B70330007E4561 /* UIViewController+Additions.swift */,
+				0442438324BA8381003CEB76 /* UIView+Additions.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -139,6 +152,7 @@
 				04B1B89524B859CB00191E90 /* Models */,
 				042E599D24B995C90007DDED /* Model Controllers */,
 				04B1B8A424B86A5300191E90 /* View Controllers */,
+				0442438524BA8B52003CEB76 /* Views */,
 			);
 			path = "Top 100";
 			sourceTree = "<group>";
@@ -252,6 +266,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0442438424BA8381003CEB76 /* UIView+Additions.swift in Sources */,
+				0442438724BA8B96003CEB76 /* AlbumCell.swift in Sources */,
 				04D265AB24B70330007E4561 /* UIViewController+Additions.swift in Sources */,
 				04B1B89724B859DE00191E90 /* AlbumFeed.swift in Sources */,
 				04D2658624B6FEDB007E4561 /* AppDelegate.swift in Sources */,
@@ -417,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58CQP95QD3;
 				INFOPLIST_FILE = "Top 100/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58CQP95QD3;
 				INFOPLIST_FILE = "Top 100/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
