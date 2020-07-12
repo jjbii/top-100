@@ -20,7 +20,7 @@ class AlbumListModelController {
 
     weak var delegate: AlbumListModelControllerDelegate?
 
-    private let iTunesApiService = iTunesAPIService()
+    private let albumFeedService = AlbumFeedService()
     private var albumFeed: AlbumFeed?
     private let artworkService = AlbumArtworkService.shared
     private var albumArtworkObserver: NSObjectProtocol?
@@ -38,7 +38,7 @@ class AlbumListModelController {
     // MARK: - Public
     
     func getAlbumFeed() {
-        self.iTunesApiService.getAlbumFeed { [weak self] result in
+        self.albumFeedService.getAlbumFeed { [weak self] result in
             guard let strongSelf = self else { return }
             
             switch result {

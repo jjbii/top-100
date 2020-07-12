@@ -1,5 +1,5 @@
 //
-//  iTunesAPIService.swift
+//  AlbumFeedService.swift
 //  Top 100
 //
 //  Created by Jack Bransfield on 7/10/20.
@@ -11,7 +11,7 @@ import Foundation
 
 typealias AlbumFeedResult = Result<AlbumFeed, Error>
 
-struct iTunesAPIService {
+struct AlbumFeedService {
     
     // MARK: - Properties
     

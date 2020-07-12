@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042E599C24B974FA0007DDED /* iTunesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599B24B974FA0007DDED /* iTunesAPIService.swift */; };
+		042E599C24B974FA0007DDED /* AlbumFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599B24B974FA0007DDED /* AlbumFeedService.swift */; };
 		042E599F24B995F90007DDED /* AlbumListModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599E24B995F90007DDED /* AlbumListModelController.swift */; };
 		042E59A124B9AEBE0007DDED /* AlbumArtworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */; };
 		0442438424BA8381003CEB76 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442438324BA8381003CEB76 /* UIView+Additions.swift */; };
@@ -38,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042E599B24B974FA0007DDED /* iTunesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPIService.swift; sourceTree = "<group>"; };
+		042E599B24B974FA0007DDED /* AlbumFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFeedService.swift; sourceTree = "<group>"; };
 		042E599E24B995F90007DDED /* AlbumListModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListModelController.swift; sourceTree = "<group>"; };
 		042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumArtworkService.swift; sourceTree = "<group>"; };
 		0442438324BA8381003CEB76 /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		042E599A24B974E10007DDED /* iTunes API */ = {
 			isa = PBXGroup;
 			children = (
-				042E599B24B974FA0007DDED /* iTunesAPIService.swift */,
+				042E599B24B974FA0007DDED /* AlbumFeedService.swift */,
 				042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */,
 			);
 			path = "iTunes API";
@@ -288,7 +288,7 @@
 				04D2658824B6FEDB007E4561 /* SceneDelegate.swift in Sources */,
 				04D265A824B70061007E4561 /* AppFlowController.swift in Sources */,
 				04B1B89924B862A500191E90 /* Album.swift in Sources */,
-				042E599C24B974FA0007DDED /* iTunesAPIService.swift in Sources */,
+				042E599C24B974FA0007DDED /* AlbumFeedService.swift in Sources */,
 				042E59A124B9AEBE0007DDED /* AlbumArtworkService.swift in Sources */,
 				042E599F24B995F90007DDED /* AlbumListModelController.swift in Sources */,
 				0442438A24BAE69D003CEB76 /* AlbumDetailViewController.swift in Sources */,
