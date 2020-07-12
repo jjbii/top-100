@@ -70,7 +70,6 @@ struct iTunesAPIService {
     }
 }
 
-
 enum APIError: Error {
     case noResponseData
     

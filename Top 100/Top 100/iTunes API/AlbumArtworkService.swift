@@ -12,7 +12,7 @@ class AlbumArtworkService: NSObject {
     
     // MARK: - Properties
     
-    static var shared: AlbumArtworkService = AlbumArtworkService()
+    static let shared: AlbumArtworkService = AlbumArtworkService()
     private var cache = NSCache<NSString, UIImage>()
     private let session = URLSession.shared
     private var activeDataTasks = [String: URLSessionDataTask]()
@@ -47,14 +47,9 @@ class AlbumArtworkService: NSObject {
 private extension AlbumArtworkService {
     
     func requestArtworkImage(for album: Album) {
-        guard
-            let artworkUrl = album.artworkUrl,
-            !self.requestInProgress(for: album)
-            else {
-                return
-        }
+        guard !self.requestInProgress(for: album) else { return }
                 
-        let request = URLRequest(url: artworkUrl)
+        let request = URLRequest(url: album.artworkUrl)
         let task = self.session.dataTask(with: request) { (data, response, error) in
             defer {
                 self.activeDataTasks[album.id] = nil

@@ -13,10 +13,10 @@ struct Album: Decodable {
     let name: String
     let artistName: String
     let genres: [Genre]
-    let releaseDate: Date?
+    let releaseDate: Date
     let copyright: String
-    let url: URL?
-    let artworkUrl: URL?
+    let url: URL
+    let artworkUrl: URL
     
     private enum CodingKeys: String, CodingKey {
         case id

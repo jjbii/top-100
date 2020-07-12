@@ -32,6 +32,15 @@ class AppFlowController: UIViewController {
         self.install(childViewController: childNav, addingConstraints: true)
         self.childNavigationController = childNav
     }
+    
+    // MARK: - Navigation
+    
+    private func showAlbumDetails(for album: Album) {
+        let modelController = AlbumDetailModelController(album: album)
+        let albumDetailVC = AlbumDetailViewController(modelController: modelController)
+        albumDetailVC.delegate = self
+        self.childNavigationController?.pushViewController(albumDetailVC, animated: true)
+    }
 }
 
 // MARK: - AlbumListViewControllerDelegate
@@ -39,6 +48,15 @@ class AppFlowController: UIViewController {
 extension AppFlowController: AlbumListViewControllerDelegate {
     
     func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album) {
-        print("Did select album: \(album.name)")
+        self.showAlbumDetails(for: album)
+    }
+}
+
+// MARK: - AlbumDetailViewControllerDelegate
+
+extension AppFlowController: AlbumDetailViewControllerDelegate {
+    
+    func albumDetailViewController(_ viewController: AlbumDetailViewController, didRequestAppleMusic url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
