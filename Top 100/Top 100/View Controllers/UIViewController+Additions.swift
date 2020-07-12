@@ -15,13 +15,7 @@ extension UIViewController {
         self.addChild(child)
         self.view.addSubview(child.view)
         if addingConstraints {
-            child.view.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                child.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                child.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                child.view.topAnchor.constraint(equalTo: self.view.topAnchor),
-                child.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-            ])
+            child.view.constrain(to: self.view)
         }
         child.didMove(toParent: self)
     }

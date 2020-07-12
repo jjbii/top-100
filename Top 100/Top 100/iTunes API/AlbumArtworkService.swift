@@ -67,20 +67,24 @@ private extension AlbumArtworkService {
             }
             
             self.cache.setObject(image, forKey: album.id as NSString)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: ArtworkServiceNotification.Name),
-                                            object: self,
-                                            userInfo: [
-                                                ArtworkServiceNotification.AlbumId: album.id,
-                                                ArtworkServiceNotification.Image: image
-            ])
+            self.postNotification(forImage: image, withAlbumId: album.id)
             self.activeRequestKeys.remove(album.id)
         }
         task.resume()
     }
+    
+    func postNotification(forImage image: UIImage, withAlbumId albumId: String) {
+        NotificationCenter.default.post(name: ArtworkServiceNotification.name,
+                                        object: self,
+                                        userInfo: [
+                                            ArtworkServiceNotification.albumIdKey: albumId,
+                                            ArtworkServiceNotification.imageKey: image
+        ])
+    }
 }
 
 struct ArtworkServiceNotification {
-    static let Name = "AlbumArtworkServiceDidReceiveImage"
-    static let AlbumId = "AlbumId"
-    static let Image = "Image"
+    static let name = Notification.Name(rawValue: "AlbumArtworkServiceDidReceiveImage")
+    static let albumIdKey = "AlbumId"
+    static let imageKey = "Image"
 }

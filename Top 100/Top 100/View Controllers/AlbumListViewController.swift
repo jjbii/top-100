@@ -17,8 +17,8 @@ class AlbumListViewController: UIViewController {
     // MARK: - Properties
 
     weak var delegate: AlbumListViewControllerDelegate?
-    var tableView: UITableView?
-    var modelController: AlbumListModelController?
+    var tableView = UITableView()
+    var modelController = AlbumListModelController()
 
     // MARK: - UIViewController
     
@@ -31,7 +31,7 @@ class AlbumListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureTableView()
-        self.modelController = AlbumListModelController(delegate: self)
+        self.configureModelController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,26 +42,34 @@ class AlbumListViewController: UIViewController {
     // MARK: - Setup
     
     func configureTableView() {
-        let tableView = UITableView(frame: self.view.bounds)
-        self.view.addSubview(tableView)
-        tableView.rowHeight = 64.0
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        tableView.dataSource = self
-        tableView.delegate = self
-        self.tableView = tableView
+        self.view.addSubview(self.tableView)
+        self.tableView.constrain(to: self.view)
+        self.tableView.rowHeight = 64.0
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.register(AlbumCell.self, forCellReuseIdentifier: AlbumCell.identifier)
+    }
+    
+    func configureModelController() {
+        self.modelController.delegate = self
+        self.modelController.getAlbumFeed()
     }
         
     func clearCurrentSelection() {
-        guard let indexPath = self.tableView?.indexPathForSelectedRow else {
+        guard let indexPath = self.tableView.indexPathForSelectedRow else {
             return
         }
-        self.tableView?.deselectRow(at: indexPath, animated: false)
+        self.tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    private func visibleCell(for index: Int) -> AlbumCell? {
+        let indexPath = IndexPath(row: index, section: 0)
+        guard
+            let visibleIndexPaths = self.tableView.indexPathsForVisibleRows,
+            visibleIndexPaths.contains(indexPath) else {
+                return nil
+        }
+        return self.tableView.cellForRow(at: indexPath) as? AlbumCell
     }
 }
 
@@ -70,27 +78,18 @@ class AlbumListViewController: UIViewController {
 extension AlbumListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.modelController?.numberOfAlbums() ?? 0
+        return self.modelController.numberOfAlbums()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "AlbumCell")
-        
-        let album = self.modelController?.album(at: indexPath.row)
-        
-        cell.textLabel?.text = album?.name ?? "Album name"
-        cell.detailTextLabel?.text = album?.artistName ?? "Artist name"
-        if let imageView = cell.imageView {
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                imageView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16.0),
-                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-                imageView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
-                imageView.heightAnchor.constraint(equalTo: cell.contentView.heightAnchor, constant: -8.0)
-            ])
-            let cover = UIImage(named: "200x200bb")
-            imageView.image =  cover
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell else {
+            return UITableViewCell()
         }
+        
+        cell.nameLabel.text = self.modelController.albumName(for: indexPath.row)
+        cell.artistLabel.text = self.modelController.artistName(for: indexPath.row)
+        cell.rankLabel.text = String(indexPath.row + 1)
+        cell.artworkView.image = self.modelController.artwork(for: indexPath.row)
         return cell
     }
 }
@@ -100,7 +99,7 @@ extension AlbumListViewController: UITableViewDataSource {
 extension AlbumListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let album = self.modelController?.album(at: indexPath.row) else { return }
+        guard let album = self.modelController.album(at: indexPath.row) else { return }
         self.delegate?.albumListViewController(self, didSelectAlbum: album)
     }
 }
@@ -111,11 +110,17 @@ extension AlbumListViewController: AlbumListModelControllerDelegate {
     
     func albumListModelControllerDidUpdate(_ controller: AlbumListModelController) {
         self.title = controller.listTitle
-        self.tableView?.reloadData()
+        self.tableView.reloadData()
     }
     
     func albumListModelController(_ controller: AlbumListModelController, didReceiveError error: Error) {
         // TODO: Show an alert with the error.
-        print("AlbumListModelController did receive error.")
+        print("AlbumListModelController did receive error.\n\(error)")
+    }
+    
+    func albumListModelController(_ controller: AlbumListModelController, didReceiveImage image: UIImage, forAlbumAt index: Int) {
+        self.visibleCell(for: index)?.artworkView.image = image
     }
 }
+
+// TODO: Add prefetching support.
