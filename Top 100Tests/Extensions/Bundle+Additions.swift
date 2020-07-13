@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import Top_100
 
 extension Bundle {
     
@@ -21,8 +22,7 @@ extension Bundle {
             fatalError("Failed to load \(file) from bundle.")
         }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatter = DateFormatter.iTunesDateFormatter
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         

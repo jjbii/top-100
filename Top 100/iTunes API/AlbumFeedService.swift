@@ -26,8 +26,7 @@ struct AlbumFeedService {
     }
     
     private var decoder: JSONDecoder {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatter = DateFormatter.iTunesDateFormatter
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         return decoder

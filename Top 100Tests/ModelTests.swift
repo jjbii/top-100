@@ -36,7 +36,7 @@ class ModelTests: XCTestCase {
         XCTAssertEqual(album.genres.count, 6)
         XCTAssertEqual(
             album.releaseDate,
-            DateFormatter.top100Formatter.date(from: "2018-02-16")
+            DateFormatter.iTunesDateFormatter.date(from: "2018-02-16")
         )
         XCTAssertEqual(
             album.copyright,
