@@ -63,7 +63,11 @@ private extension AlbumArtworkService {
         let request = URLRequest(url: album.artworkUrl)
         let task = self.session.dataTask(with: request) { (data, response, error) in
             defer {
-                self.activeDataTasks[album.id] = nil
+                DispatchQueue.main.async {
+                    // Swift dictionaries are not thread safe, so we always
+                    // need to access this on the main queue.
+                    self.activeDataTasks[album.id] = nil
+                }
             }
             
             if let error = error {
