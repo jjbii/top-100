@@ -18,9 +18,21 @@ class AlbumListViewController: UIViewController {
     // MARK: - Properties
 
     weak var delegate: AlbumListViewControllerDelegate?
-    var tableView = UITableView()
-    var modelController = AlbumListModelController()
+    let tableView = UITableView()
+    let modelController = AlbumListModelController()
 
+    private let activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.startAnimating()
+        return view
+    }()
+    
+    private var activityIndicatorIsVisble: Bool = false {
+        didSet{
+            self.tableView.tableFooterView = activityIndicatorIsVisble ? self.activityIndicator : nil
+        }
+    }
+    
     // MARK: - UIViewController
     
     override func loadView() {
@@ -55,6 +67,7 @@ class AlbumListViewController: UIViewController {
     
     func configureModelController() {
         self.modelController.delegate = self
+        self.activityIndicatorIsVisble = true
         self.modelController.getAlbumFeed()
     }
         
@@ -128,6 +141,7 @@ extension AlbumListViewController: UITableViewDelegate {
 extension AlbumListViewController: AlbumListModelControllerDelegate {
     
     func albumListModelControllerDidUpdate(_ controller: AlbumListModelController) {
+        self.activityIndicatorIsVisble = false
         self.title = controller.listTitle
         self.tableView.reloadData()
     }
