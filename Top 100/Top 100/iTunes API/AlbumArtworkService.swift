@@ -25,6 +25,7 @@ class AlbumArtworkService: NSObject {
 
     // MARK: - Initialization
     
+    // Making the initialzer private ensures that it will only be instantiated as a singleton.
     private override init() {
         super.init()
     }

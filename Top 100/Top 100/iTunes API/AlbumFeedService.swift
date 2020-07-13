@@ -40,8 +40,8 @@ struct AlbumFeedService {
         
         let task = self.session.dataTask(with: self.feedRequest) { (data, response, error) in
             
-            // By calling the completion handler only once in the defer block,
-            // we can more easily guarantee that it will be called on the main queue.
+            // By calling the completion handler only once in the defer block,we guarantee it will be called
+            // on the main queue without littering the code with calls to `DispatchQueue.main.async()`.
             let result: AlbumFeedResult
             defer {
                 DispatchQueue.main.async {
