@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 typealias AlbumFeedResult = Result<AlbumFeed, Error>
 
 struct AlbumFeedService {

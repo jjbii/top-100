@@ -136,6 +136,8 @@ extension AlbumListViewController: AlbumListModelControllerDelegate {
     }
     
     func albumListModelController(_ controller: AlbumListModelController, didReceiveImage image: UIImage, forAlbumAt index: Int) {
+        // When we receive a new image, we assign it to an existing cell (if it is currently visible) rather than reloading the cell.
+        // This gives the table view much better scrolling performance, especially when images arrive in quick succession.
         self.visibleCell(for: index)?.artworkView.image = image
     }
 }

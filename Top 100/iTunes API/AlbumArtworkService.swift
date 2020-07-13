@@ -21,6 +21,8 @@ class AlbumArtworkService: NSObject {
     static let shared: AlbumArtworkService = AlbumArtworkService()
     private var cache = NSCache<NSString, UIImage>()
     private let session = URLSession.shared
+    /// This dictionary is used to track any requests that are currently in flight.
+    /// This prevents the app from sending multiple requests for the same resource.
     private var activeDataTasks = [String: URLSessionDataTask]()
 
     // MARK: - Initialization
@@ -32,6 +34,8 @@ class AlbumArtworkService: NSObject {
     
     // MARK: - Public
     
+    /// If the desired image already exists in the cache, we return it immediately.
+    /// Otherwise, we return `nil` and request the image from the web asynchronously.
     func artwork(for album: Album) -> UIImage? {
         if let cachedImage = self.cache.object(forKey: album.id as NSString) {
             return cachedImage
@@ -89,6 +93,8 @@ private extension AlbumArtworkService {
         return false
     }
     
+    /// Because there may be multiple objects interested in receiving images fetched by
+    /// this class, we post a notificaton rather than using a delegate protocol.
     func postNotification(forImage image: UIImage, withAlbumId albumId: String) {
         NotificationCenter.default.post(name: ArtworkServiceNotification.name,
                                         object: self,
