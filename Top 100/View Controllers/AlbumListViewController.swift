@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AlbumListViewControllerDelegate: class {
-    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album)
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album, at rank: Int)
     func albumListViewController(_ viewController: AlbumListViewController, didReceiveError error: Error)
 }
 
@@ -118,7 +118,8 @@ extension AlbumListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let album = self.modelController.album(at: indexPath.row) else { return }
-        self.delegate?.albumListViewController(self, didSelectAlbum: album)
+        let rank = indexPath.row + 1
+        self.delegate?.albumListViewController(self, didSelectAlbum: album, at: rank)
     }
 }
 

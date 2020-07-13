@@ -125,6 +125,7 @@ class AlbumDetailViewController: UIViewController {
     }
     
     func populateContentViews() {
+        self.title = self.modelController.albumRank
         self.nameLabel.text = self.modelController.albumName
         self.artistLabel.text = self.modelController.artistName
         self.genreLabel.text = self.modelController.genres
@@ -154,14 +155,13 @@ class AlbumDetailViewController: UIViewController {
     private func layoutStackView() {
         guard let stackView = self.stackView else { return }
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        let padding: CGFloat = 20
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: padding),
-            stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: padding),
-            stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: padding * -1)
+            stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
         ])
         
-        stackView.setCustomSpacing(20.0, after: self.artworkView)
+        stackView.setCustomSpacing(20, after: self.artworkView)
         stackView.setCustomSpacing(6, after: self.dateLabel)
     }
         

@@ -11,7 +11,7 @@ import Foundation
 struct Genre: Decodable {
     let id: String
     let name: String
-    let url: URL?
+    let url: URL
     
     private enum CodingKeys: String, CodingKey {
         case id = "genreId"

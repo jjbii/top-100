@@ -43,14 +43,15 @@ class AppFlowController: UIViewController {
         let albumListVC = AlbumListViewController()
         albumListVC.delegate = self
         let childNav = UINavigationController(rootViewController: albumListVC)
+        childNav.navigationBar.prefersLargeTitles = true
         self.install(childViewController: childNav, addingConstraints: true)
         self.childNavigationController = childNav
     }
     
     // MARK: - Navigation
     
-    private func showAlbumDetails(for album: Album) {
-        let modelController = AlbumDetailModelController(album: album)
+    private func showAlbumDetails(for album: Album, at rank: Int) {
+        let modelController = AlbumDetailModelController(album: album, rank: rank)
         let albumDetailVC = AlbumDetailViewController(modelController: modelController)
         albumDetailVC.delegate = self
         self.childNavigationController?.pushViewController(albumDetailVC, animated: true)
@@ -61,8 +62,8 @@ class AppFlowController: UIViewController {
 
 extension AppFlowController: AlbumListViewControllerDelegate {
     
-    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album) {
-        self.showAlbumDetails(for: album)
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album, at rank: Int) {
+        self.showAlbumDetails(for: album, at: rank)
     }
     
     func albumListViewController(_ viewController: AlbumListViewController, didReceiveError error: Error) {

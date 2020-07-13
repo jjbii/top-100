@@ -19,13 +19,15 @@ class AlbumDetailModelController {
     weak var delegate: AlbumDetailModelControllerDelegate?
     
     private let album: Album
+    private let rank: Int
     private let artworkService = AlbumArtworkService.shared
     private var albumArtworkObserver: NSObjectProtocol?
 
     // MARK: - Initialization
 
-    init(album: Album) {
+    init(album: Album, rank: Int) {
         self.album = album
+        self.rank = rank
         self.addNotificationObservers()
     }
     
@@ -35,12 +37,16 @@ class AlbumDetailModelController {
     
     // MARK: - Public
     
+    var albumRank: String {
+        return String(self.rank)
+    }
+    
     var albumName: String {
-        return album.name
+        return self.album.name
     }
     
     var artistName: String {
-        return album.artistName
+        return self.album.artistName
     }
     
     var genres: String {
