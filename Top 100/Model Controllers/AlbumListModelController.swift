@@ -111,7 +111,7 @@ private extension AlbumListModelController {
                 else {
                     return
             }
-            self.delegate?.albumListModelController(self, didReceiveImage: image, forAlbumAt: Int(albumIndex))
+            self.delegate?.albumListModelController(self, didReceiveImage: image, forAlbumAt: albumIndex)
         }
         self.albumArtworkObserver = observer
     }
