@@ -10,6 +10,7 @@ import UIKit
 
 protocol AlbumListViewControllerDelegate: class {
     func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album)
+    func albumListViewController(_ viewController: AlbumListViewController, didReceiveError error: Error)
 }
 
 class AlbumListViewController: UIViewController {
