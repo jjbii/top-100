@@ -131,8 +131,7 @@ extension AlbumListViewController: AlbumListModelControllerDelegate {
     }
     
     func albumListModelController(_ controller: AlbumListModelController, didReceiveError error: Error) {
-        // TODO: Show an alert with the error.
-        print("AlbumListModelController did receive error.\n\(error)")
+        self.delegate?.albumListViewController(self, didReceiveError: error)
     }
     
     func albumListModelController(_ controller: AlbumListModelController, didReceiveImage image: UIImage, forAlbumAt index: Int) {

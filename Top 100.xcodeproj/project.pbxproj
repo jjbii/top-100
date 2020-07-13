@@ -18,6 +18,7 @@
 		042E599C24B974FA0007DDED /* AlbumFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599B24B974FA0007DDED /* AlbumFeedService.swift */; };
 		042E599F24B995F90007DDED /* AlbumListModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E599E24B995F90007DDED /* AlbumListModelController.swift */; };
 		042E59A124B9AEBE0007DDED /* AlbumArtworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */; };
+		0440816924BC145B003E7632 /* UIAlertController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440816824BC145B003E7632 /* UIAlertController+Additions.swift */; };
 		0442438424BA8381003CEB76 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442438324BA8381003CEB76 /* UIView+Additions.swift */; };
 		0442438724BA8B96003CEB76 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442438624BA8B96003CEB76 /* AlbumCell.swift */; };
 		0442438A24BAE69D003CEB76 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442438924BAE69D003CEB76 /* AlbumDetailViewController.swift */; };
@@ -56,6 +57,7 @@
 		042E599B24B974FA0007DDED /* AlbumFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFeedService.swift; sourceTree = "<group>"; };
 		042E599E24B995F90007DDED /* AlbumListModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListModelController.swift; sourceTree = "<group>"; };
 		042E59A024B9AEBE0007DDED /* AlbumArtworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumArtworkService.swift; sourceTree = "<group>"; };
+		0440816824BC145B003E7632 /* UIAlertController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Additions.swift"; sourceTree = "<group>"; };
 		0442438324BA8381003CEB76 /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		0442438624BA8B96003CEB76 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		0442438924BAE69D003CEB76 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				04D265AA24B70330007E4561 /* UIViewController+Additions.swift */,
 				0442438324BA8381003CEB76 /* UIView+Additions.swift */,
+				0440816824BC145B003E7632 /* UIAlertController+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0440816924BC145B003E7632 /* UIAlertController+Additions.swift in Sources */,
 				0442438424BA8381003CEB76 /* UIView+Additions.swift in Sources */,
 				0442438724BA8B96003CEB76 /* AlbumCell.swift in Sources */,
 				04D265AB24B70330007E4561 /* UIViewController+Additions.swift in Sources */,

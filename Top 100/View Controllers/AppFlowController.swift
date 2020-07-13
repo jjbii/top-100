@@ -50,6 +50,11 @@ extension AppFlowController: AlbumListViewControllerDelegate {
     func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album) {
         self.showAlbumDetails(for: album)
     }
+    
+    func albumListViewController(_ viewController: AlbumListViewController, didReceiveError error: Error) {
+        let alertController = UIAlertController.alertController(with: error)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - AlbumDetailViewControllerDelegate
