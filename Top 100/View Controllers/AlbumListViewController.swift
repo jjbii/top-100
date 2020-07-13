@@ -9,18 +9,18 @@
 import UIKit
 
 protocol AlbumListViewControllerDelegate: class {
-    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album, at rank: Int)
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbumAtIndex index: Int)
     func albumListViewController(_ viewController: AlbumListViewController, didReceiveError error: Error)
 }
 
 class AlbumListViewController: UIViewController {
-      
+    
     // MARK: - Properties
-
+    
     weak var delegate: AlbumListViewControllerDelegate?
+    let modelController: AlbumListModelController
     let tableView = UITableView()
-    let modelController = AlbumListModelController()
-
+    
     private let activityIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.startAnimating()
@@ -31,6 +31,18 @@ class AlbumListViewController: UIViewController {
         didSet{
             self.tableView.tableFooterView = activityIndicatorIsVisble ? self.activityIndicator : nil
         }
+    }
+    
+    // MARK: - Initialization
+    
+    init(modelController: AlbumListModelController) {
+        self.modelController = modelController
+        super.init(nibName: nil, bundle: nil)
+        self.modelController.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - UIViewController
@@ -66,11 +78,10 @@ class AlbumListViewController: UIViewController {
     }
     
     func configureModelController() {
-        self.modelController.delegate = self
         self.activityIndicatorIsVisble = true
         self.modelController.getAlbumFeed()
     }
-        
+    
     func clearCurrentSelection() {
         guard let indexPath = self.tableView.indexPathForSelectedRow else {
             return
@@ -130,9 +141,7 @@ extension AlbumListViewController: UITableViewDataSourcePrefetching {
 extension AlbumListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let album = self.modelController.album(at: indexPath.row) else { return }
-        let rank = indexPath.row + 1
-        self.delegate?.albumListViewController(self, didSelectAlbum: album, at: rank)
+        self.delegate?.albumListViewController(self, didSelectAlbumAtIndex: indexPath.row)
     }
 }
 

@@ -27,6 +27,7 @@ class AppFlowController: UIViewController {
     // MARK: - Properties
     
     private var childNavigationController: UINavigationController?
+    private let albumListModelController = AlbumListModelController()
     
     // MARK: - UIViewController
     
@@ -40,7 +41,7 @@ class AppFlowController: UIViewController {
     // MARK: - Setup
     
     private func configureChildNavigationController() {
-        let albumListVC = AlbumListViewController()
+        let albumListVC = AlbumListViewController(modelController: self.albumListModelController)
         albumListVC.delegate = self
         let childNav = UINavigationController(rootViewController: albumListVC)
         childNav.navigationBar.prefersLargeTitles = true
@@ -50,8 +51,8 @@ class AppFlowController: UIViewController {
     
     // MARK: - Navigation
     
-    private func showAlbumDetails(for album: Album, at rank: Int) {
-        let modelController = AlbumDetailModelController(album: album, rank: rank)
+    private func showAlbumDetails(for index: Int) {
+        guard let modelController = self.albumListModelController.albumDetailModelController(for: index) else { return }
         let albumDetailVC = AlbumDetailViewController(modelController: modelController)
         albumDetailVC.delegate = self
         self.childNavigationController?.pushViewController(albumDetailVC, animated: true)
@@ -62,8 +63,8 @@ class AppFlowController: UIViewController {
 
 extension AppFlowController: AlbumListViewControllerDelegate {
     
-    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbum album: Album, at rank: Int) {
-        self.showAlbumDetails(for: album, at: rank)
+    func albumListViewController(_ viewController: AlbumListViewController, didSelectAlbumAtIndex index: Int) {
+        self.showAlbumDetails(for: index)
     }
     
     func albumListViewController(_ viewController: AlbumListViewController, didReceiveError error: Error) {

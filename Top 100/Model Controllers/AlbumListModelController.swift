@@ -93,6 +93,13 @@ class AlbumListModelController {
             self.artworkService.cancelPrefetchRequest(for: album)
         }
     }
+    
+    func albumDetailModelController(for index: Int) -> AlbumDetailModelController? {
+        guard let album = self.album(at: index) else { return nil }
+        let rank = index + 1
+        let modelController = AlbumDetailModelController(album: album, rank: rank)
+        return modelController
+    }
 }
 
 // MARK: - Private
