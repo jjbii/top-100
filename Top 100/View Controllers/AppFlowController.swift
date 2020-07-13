@@ -8,6 +8,20 @@
 
 import UIKit
 
+/// The Flow Controller pattern is similar to the Coordinator pattern, but it takes advantage of existing
+/// UIKit APIs and concepts, like view controller containment and the responder chain.
+///
+/// Similar to existing classes like `UINavigationController`, `UITabBarController`, and `UIPageViewController`,
+/// a flow controller does not directly display content. Instead, its primary role is to manage a set of child
+/// view controllers. Its responsibilities include:
+/// - instantiating child view controllers
+/// - injecting dependencies needed by those view controllers
+/// - navigating between child view controllers, typically in response to delegate callbacks
+///
+/// As a result, conventional view controllers have a far more limited set of responsibilities, and can become
+/// smaller and more reusable. Because the pattern relies on view controller containment, it doesn't require
+/// maintaining a separate hierarchy of coordinator objects, and has a much shallower learning curve for
+/// most iOS developers.
 class AppFlowController: UIViewController {
     
     // MARK: - Properties
