@@ -1,0 +1,34 @@
+//
+//  Bundle+Additions.swift
+//  Top 100Tests
+//
+//  Created by Jack Bransfield on 7/12/20.
+//  Copyright © 2020 Built Light. All rights reserved.
+//
+
+import Foundation
+
+extension Bundle {
+    
+    func decode<T: Decodable>(_ type: T.Type, from file: String) -> T {
+        
+        guard let url = self.url(forResource: file, withExtension: nil) else {
+            fatalError("Failed to locate \(file) in bundle.")
+        }
+
+        guard let data = try? Data(contentsOf: url) else {
+            fatalError("Failed to load \(file) from bundle.")
+        }
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch let error {
+            fatalError("Failed to decode \(file) from bundle: \(error.localizedDescription)")
+        }
+    }
+}

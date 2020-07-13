@@ -1,0 +1,45 @@
+{
+  "artistId": "128860700",
+  "artistName": "Nipsey Hussle",
+  "artistUrl": "https://music.apple.com/us/artist/nipsey-hussle/128860700?app=music",
+  "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/aa/d0/2c/aad02cb6-a81c-6554-af9b-4bd3b8f2745d/075679884732.jpg/200x200bb.png",
+  "contentAdvisoryRating": "Explicit",
+  "copyright": "℗ 2018 All Money In No Money Out/Atlantic Recording Corporation for the United States and WEA International Inc. for the world outside of the United States.  A Warner Music Group Company.",
+  "genres": [
+    {
+      "genreId": "18",
+      "name": "Hip-Hop/Rap",
+      "url": "https://itunes.apple.com/us/genre/id18"
+    },
+    {
+      "genreId": "34",
+      "name": "Music",
+      "url": "https://itunes.apple.com/us/genre/id34"
+    },
+    {
+      "genreId": "1078",
+      "name": "West Coast Rap",
+      "url": "https://itunes.apple.com/us/genre/id1078"
+    },
+    {
+      "genreId": "1071",
+      "name": "Gangsta Rap",
+      "url": "https://itunes.apple.com/us/genre/id1071"
+    },
+    {
+      "genreId": "1072",
+      "name": "Hardcore Rap",
+      "url": "https://itunes.apple.com/us/genre/id1072"
+    },
+    {
+      "genreId": "1076",
+      "name": "Rap",
+      "url": "https://itunes.apple.com/us/genre/id1076"
+    }
+  ],
+  "id": "1316706552",
+  "kind": "album",
+  "name": "Victory Lap",
+  "releaseDate": "2018-02-16",
+  "url": "https://music.apple.com/us/album/victory-lap/1316706552?app=music"
+}

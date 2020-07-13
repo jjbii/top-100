@@ -31,6 +31,11 @@ class AlbumListModelController {
         self.addNotificationObservers()
     }
     
+    convenience init(albumFeed: AlbumFeed) {
+        self.init()
+        self.albumFeed = albumFeed
+    }
+    
     deinit {
         self.removeNotificationObservers()
     }
