@@ -25,7 +25,7 @@ class AlbumDetailModelControllerTests: XCTestCase {
 
     override func setUpWithError() throws {
         let album: Album = self.bundle.decode(Album.self, from: "Album.json")
-        self.modelController = AlbumDetailModelController(album: album)
+        self.modelController = AlbumDetailModelController(album: album, rank: 67)
     }
     
     // MARK: - Tests
