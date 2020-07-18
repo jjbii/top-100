@@ -42,7 +42,9 @@ class AlbumListViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.modelController = AlbumListModelController()
+        super.init(coder: coder)
+        self.modelController.delegate = self
     }
     
     // MARK: - UIViewController

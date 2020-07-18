@@ -104,8 +104,10 @@ class AlbumDetailViewController: UIViewController {
         self.modelController.delegate = self
     }
     
+    /// The view controller cannot be initialized without a model controller,
+    /// so this initializer will always return `nil`.
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     // MARK: - UIViewController
