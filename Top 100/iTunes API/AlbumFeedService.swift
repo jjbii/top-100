@@ -16,9 +16,10 @@ struct AlbumFeedService {
     
     private let session = URLSession.shared
     
-    private var feedRequest: URLRequest {
-        // We force unwrap the URL, since it will only return `nil` if our string is incorrectly formatted.
-        let url = URL(string: "https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/all/100/explicit.json")!
+    private var feedRequest: URLRequest? {
+        guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/all/100/explicit.json") else {
+            return nil
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -35,9 +36,12 @@ struct AlbumFeedService {
     // MARK: - Public
     
     func getAlbumFeed(completion: @escaping (AlbumFeedResult) -> Void) {
+        guard let request = self.feedRequest else {
+            completion(.failure(APIError.requestInitializationFailed))
+            return
+        }
         
-        let task = self.session.dataTask(with: self.feedRequest) { (data, response, error) in
-            
+        let task = self.session.dataTask(with: request) { (data, response, error) in
             // By calling the completion handler only once in the defer block,we guarantee it will be called
             // on the main queue without littering the code with calls to `DispatchQueue.main.async()`.
             let result: AlbumFeedResult
@@ -70,11 +74,14 @@ struct AlbumFeedService {
 
 enum APIError: Error {
     case noResponseData
+    case requestInitializationFailed
     
     var localizedDescription: String {
         switch self {
         case .noResponseData:
             return "Response data is nil."
+        case .requestInitializationFailed:
+            return "The URLRequest could not be initialized."
         }
     }
 }
